@@ -5,6 +5,9 @@ import 'package:cms/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'widgets/dashboard_cards_medium.dart';
+import 'widgets/dashboard_cards_small.dart';
+
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key key}) : super(key: key);
 
@@ -29,8 +32,15 @@ class DashboardPage extends StatelessWidget {
         )),
         Expanded(
           child: ListView(
-            children: const [
-              DashboardCardsLargeScreen(),
+            children: [
+              if (ResponsiveWidget.isLargeScreen(context) || 
+                  ResponsiveWidget.isMediumScreen(context)) 
+                if (ResponsiveWidget.isCustomSize(context))
+                  const DashboardCardsMediumScreen()
+                else
+                  const DashboardCardsLargeScreen()
+              else
+                const DashboardCardsSmallScreen()
             ],
           ),
         ),
