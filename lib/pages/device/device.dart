@@ -4,6 +4,8 @@ import 'package:cms/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'widgets/device_table.dart';
+
 class DevicePage extends StatelessWidget {
   const DevicePage({ Key key }) : super(key: key);
 
@@ -24,7 +26,14 @@ class DevicePage extends StatelessWidget {
               ),
             ),
           ],
-        ))
+        )),
+        Expanded(
+          child: ListView(
+            children: const [
+              DevicesTable(),
+            ],
+          ),
+        ),
       ],
     );
   }

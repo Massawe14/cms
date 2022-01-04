@@ -4,6 +4,8 @@ import 'package:cms/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'widgets/contents_table.dart';
+
 class ContentPage extends StatelessWidget {
   const ContentPage({ Key key }) : super(key: key);
 
@@ -24,7 +26,14 @@ class ContentPage extends StatelessWidget {
               ),
             ),
           ],
-        ))
+        )),
+        Expanded(
+          child: ListView(
+            children: const [
+              ContentsTable(),
+            ],
+          ),
+        ),
       ],
     );
   }
