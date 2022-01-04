@@ -1,5 +1,6 @@
 import 'package:cms/constants/controllers.dart';
 import 'package:cms/helpers/responsiveness.dart';
+import 'package:cms/pages/dashboard/widgets/available_devices.dart';
 import 'package:cms/pages/dashboard/widgets/dashboard_cards_large.dart';
 import 'package:cms/pages/dashboard/widgets/revenue_section_large.dart';
 import 'package:cms/widgets/custom_text.dart';
@@ -46,7 +47,8 @@ class DashboardPage extends StatelessWidget {
               if(!ResponsiveWidget.isSmallScreen(context))  
                 const RevenueSectionLarge()
               else
-                const RevenueSectionSmall()
+                const RevenueSectionSmall(),
+              const AvailableDevices()
             ],
           ),
         ),
