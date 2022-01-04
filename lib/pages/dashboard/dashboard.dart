@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import 'widgets/dashboard_cards_medium.dart';
 import 'widgets/dashboard_cards_small.dart';
+import 'widgets/revenue_section_small.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key key}) : super(key: key);
@@ -42,7 +43,10 @@ class DashboardPage extends StatelessWidget {
                   const DashboardCardsLargeScreen()
               else
                 const DashboardCardsSmallScreen(),
-              const RevenueSectionLarge(),
+              if(!ResponsiveWidget.isSmallScreen(context))  
+                const RevenueSectionLarge()
+              else
+                const RevenueSectionSmall()
             ],
           ),
         ),

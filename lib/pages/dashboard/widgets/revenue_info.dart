@@ -16,6 +16,7 @@ class RevenueInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: RichText(
+        textAlign: TextAlign.center,
         text: TextSpan(
           children: [
             TextSpan(
