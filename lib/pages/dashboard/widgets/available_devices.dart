@@ -62,7 +62,7 @@ class AvailableDevices extends StatelessWidget {
                 label: Text('Location'),
               ),
               DataColumn(
-                label: Text('Action'),
+                label: Text('Actions'),
               ),
             ],
             rows: List<DataRow>.generate(
@@ -90,21 +90,47 @@ class AvailableDevices extends StatelessWidget {
                   // ),
                   const DataCell(CustomText(text: "Dar es salaam")),
                   DataCell(
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: active,
-                          width: 2,
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            // border: Border.all(
+                            //   color: active,
+                            //   width: 2,
+                            // ),
+                            // color: light,
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          child: const CustomText(
+                            text: "Edit",
+                            // color: active.withOpacity(.7),
+                            color: Colors.white,
+                            weight: FontWeight.bold,
+                          ),
                         ),
-                        color: light,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      child: CustomText(
-                        text: "Registered",
-                        color: active.withOpacity(.7),
-                        weight: FontWeight.bold,
-                      ),
+                        const SizedBox(width: 5,),
+                        Container(
+                          decoration: BoxDecoration(
+                            // border: Border.all(
+                            //   color: active,
+                            //   width: 2,
+                            // ),
+                            // color: light,
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          child: const CustomText(
+                            text: "Delete",
+                            // color: active.withOpacity(.7),
+                            color: Colors.white,
+                            weight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ]
