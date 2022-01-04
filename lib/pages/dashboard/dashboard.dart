@@ -1,6 +1,7 @@
 import 'package:cms/constants/controllers.dart';
 import 'package:cms/helpers/responsiveness.dart';
 import 'package:cms/pages/dashboard/widgets/dashboard_cards_large.dart';
+import 'package:cms/pages/dashboard/widgets/revenue_section_large.dart';
 import 'package:cms/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,7 +41,8 @@ class DashboardPage extends StatelessWidget {
                 else
                   const DashboardCardsLargeScreen()
               else
-                const DashboardCardsSmallScreen()
+                const DashboardCardsSmallScreen(),
+              const RevenueSectionLarge(),
             ],
           ),
         ),
