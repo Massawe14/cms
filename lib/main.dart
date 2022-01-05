@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'controllers/menu_controller.dart';
 import 'controllers/navigation_controller.dart';
-import 'layout.dart';
+import 'pages/authentication/authentication.dart';
 
 void main() {
   Get.put(MenuController());
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: Colors.blue,
       ),
-      home: SiteLayout(),
+      home: const AuthenticationPage(),
     );
   }
 }
