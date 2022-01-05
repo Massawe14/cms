@@ -1,9 +1,10 @@
 import 'package:cms/constants/style.dart';
-import 'package:cms/layout.dart';
 import 'package:cms/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../routing/routes.dart';
 
 class AuthenticationPage extends StatelessWidget {
   const AuthenticationPage({ Key key }) : super(key: key);
@@ -109,7 +110,8 @@ class AuthenticationPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Get.offAll(() => SiteLayout());
+                  Get.offAllNamed(rootRoute);
+                  // Get.offAll(() => SiteLayout());
                 },
                 child: Container(
                   decoration: BoxDecoration(

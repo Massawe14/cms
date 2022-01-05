@@ -5,7 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'controllers/menu_controller.dart';
 import 'controllers/navigation_controller.dart';
+import 'layout.dart';
+import 'pages/404/error_page.dart';
 import 'pages/authentication/authentication.dart';
+import 'routing/routes.dart';
 
 void main() {
   Get.put(MenuController());
@@ -18,8 +21,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: authenticationPageRoute,
+      unknownRoute: GetPage(
+        name: "/not-found", 
+        page: () => const PageNotFound(),
+        transition: Transition.fadeIn,
+      ),
+      getPages: [
+        GetPage(
+          name: rootRoute,
+          page: () => SiteLayout(),
+        ),
+        GetPage(
+          name: authenticationPageRoute,
+          page: () => const AuthenticationPage(),
+        ),
+      ],
       debugShowCheckedModeBanner: false,
-      title: "CMS",
+      title: "DCMS",
       theme: ThemeData(
         scaffoldBackgroundColor: light,
         textTheme: GoogleFonts.mulishTextTheme(
@@ -33,7 +52,7 @@ class MyApp extends StatelessWidget {
         }),
         primaryColor: Colors.blue,
       ),
-      home: const AuthenticationPage(),
+      // home: const AuthenticationPage(),
     );
   }
 }
