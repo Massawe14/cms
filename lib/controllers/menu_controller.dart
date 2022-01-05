@@ -25,6 +25,8 @@ class MenuController extends GetxController{
     switch (itemName) {
       case dashboardPageDisplayName:
         return _customIcon(Icons.dashboard, itemName);
+      case displayPageDisplayName:
+        return _customIcon(Icons.tv, itemName);
       case devicePageDisplayName:
         return _customIcon(Icons.devices, itemName);
       case contentsPageDisplayName:
