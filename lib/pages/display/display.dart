@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 
 import '../../constants/controllers.dart';
 import '../../helpers/responsiveness.dart';
@@ -29,8 +30,31 @@ class DisplayPage extends StatelessWidget {
         )),
         Expanded(
           child: ListView(
-            children: const [
-              DisplayTable(),
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: const [
+                      Icon(
+                        Icons.search,
+                        color: Colors.orangeAccent,
+                      ),
+                    ],
+                  ),
+                  GFButton(
+                    onPressed: (){},
+                    text: "Add Display",
+                    icon: const Icon(Icons.add, color: Colors.white,),
+                    shape: GFButtonShape.pills,
+                    color: Colors.orangeAccent,
+                  ),  
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              const DisplayTable(),
             ],
           ),
         ),
