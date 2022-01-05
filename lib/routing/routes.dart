@@ -12,6 +12,9 @@ const devicePageRoute = "/device";
 const contentsPageDisplayName = "Contents";
 const contentsPageRoute = "/contents";
 
+const reportsPageDisplayName = "Reports";
+const reportsPageRoute = "/reports";
+
 const authenticationPageDisplayName = "Log out";
 const authenticationPageRoute = "/auth";
 
@@ -27,5 +30,6 @@ List<MenuItem> sideMenuItemRoutes = [
   MenuItem(displayPageDisplayName, displayPageRoute),
   MenuItem(devicePageDisplayName, devicePageRoute),
   MenuItem(contentsPageDisplayName, contentsPageRoute),
+  MenuItem(reportsPageDisplayName, reportsPageRoute),
   MenuItem(authenticationPageDisplayName, authenticationPageRoute), 
 ];

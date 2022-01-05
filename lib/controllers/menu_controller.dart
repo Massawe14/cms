@@ -30,7 +30,9 @@ class MenuController extends GetxController{
       case devicePageDisplayName:
         return _customIcon(Icons.devices, itemName);
       case contentsPageDisplayName:
-        return _customIcon(Icons.content_copy, itemName); 
+        return _customIcon(Icons.content_copy, itemName);
+      case reportsPageDisplayName:
+        return _customIcon(Icons.picture_as_pdf, itemName); 
       case authenticationPageDisplayName:
         return _customIcon(Icons.exit_to_app, itemName);   
       default:

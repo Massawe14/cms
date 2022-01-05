@@ -4,6 +4,7 @@ import '../pages/content/content.dart';
 import '../pages/dashboard/dashboard.dart';
 import '../pages/device/device.dart';
 import '../pages/display/display.dart';
+import '../pages/report/reports.dart';
 import 'routes.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -16,6 +17,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(const DevicePage());  
     case contentsPageRoute:
       return _getPageRoute(const ContentPage());
+    case reportsPageRoute:
+      return _getPageRoute(const ReportsPage());
     default:
       return _getPageRoute(const DashboardPage());
   }
