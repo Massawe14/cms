@@ -29,8 +29,24 @@ class ReportsPage extends StatelessWidget {
         )),
         Expanded(
           child: ListView(
-            children: const [
-              ReportsTable(),
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                alignment: Alignment.center,
+                width: double.maxFinite,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: const CustomText(
+                  text: "Login",
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const ReportsTable(),
             ],
           ),
         ),
