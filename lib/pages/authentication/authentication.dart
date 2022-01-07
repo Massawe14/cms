@@ -33,16 +33,28 @@ class AuthenticationPage extends StatelessWidget {
       });
 
       var data = jsonDecode(response.body);
-      if (data == "success") {
-        Get.offAllNamed(rootRoute);
-      }
-      else {
+      if (data == "dont have an account") {
         Fluttertoast.showToast(
-          msg: "Incorrect username or password!",
+          msg: "dont have an account, create an account!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           fontSize: 16.0,
         );
+      }
+      else {
+        if (data == "failed") {
+          Fluttertoast.showToast(
+            msg: "incorrect username or password!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            fontSize: 16.0,
+          );
+        }
+        else {
+          // ignore: avoid_print
+          print(data); 
+          Get.offAllNamed(rootRoute);
+        }
       }
     }
   }

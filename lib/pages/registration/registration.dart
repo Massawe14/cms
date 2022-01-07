@@ -18,6 +18,8 @@ class RegistrationPage extends StatelessWidget {
   TextEditingController password = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
 
+  bool processing = false;
+
   Future registration() async {
     if (firstname.text == "" || lastname.text == "" || username.text == "" || email.text == "" 
     || password.text == "" || confirmpassword.text == "") {
