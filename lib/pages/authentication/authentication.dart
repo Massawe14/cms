@@ -1,13 +1,51 @@
+import 'dart:convert';
+
 import 'package:cms/constants/style.dart';
 import 'package:cms/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:http/http.dart' as http;
 
 import '../../routing/routes.dart';
+import '../registration/registration.dart';
 
+// ignore: use_key_in_widget_constructors, must_be_immutable
 class AuthenticationPage extends StatelessWidget {
-  const AuthenticationPage({ Key key }) : super(key: key);
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  Future login() async {
+    if (username.text == "" || password.text == "") {
+      Fluttertoast.showToast(
+        msg: "Both fields cannot be blank!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        fontSize: 16.0,
+      );
+    }
+    else {
+      var url = Uri.parse("http://192.168.137.116/DCMS/login.php");
+      var response = await http.post(url, body: {
+        "username" : username.text,
+        "password" : password.text,
+      });
+
+      var data = jsonDecode(response.body);
+      if (data == "success") {
+        Get.offAllNamed(rootRoute);
+      }
+      else {
+        Fluttertoast.showToast(
+          msg: "Incorrect username or password!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          fontSize: 16.0,
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,48 +57,28 @@ class AuthenticationPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: Image.asset("assets/icons/logo.png"),
+              Container(
+                padding: const EdgeInsets.fromLTRB(15.0, 60.0, 0.0, 0.0),
+                child: Text(
+                  'DCMS',
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[800]
                   ),
-                  Expanded(
-                    child: Container(
-    
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                children: [
-                  Text(
-                    "Login",
-                    style: GoogleFonts.roboto(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: const [
-                  CustomText(
-                    text: "Welcome back",
-                    color: lightGrey,
-                  ),
-                ],
+                ),
               ),
               const SizedBox(
                 height: 15,
               ),
               TextField(
+                controller: username,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
-                  labelText: "Email",
-                  hintText: "abc@example.com",
+                  labelText: "USERNAME",
+                  prefixIcon: const Icon(
+                    Icons.person,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -70,10 +88,14 @@ class AuthenticationPage extends StatelessWidget {
                 height: 15,
               ),
               TextField(
+                controller: password,
                 obscureText: true,
+                keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  labelText: "Password",
-                  hintText: "1234",
+                  labelText: "PASSWORD",
+                  prefixIcon: const Icon(
+                    Icons.lock,
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -108,41 +130,53 @@ class AuthenticationPage extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              InkWell(
-                onTap: (){
-                  Get.offAllNamed(rootRoute);
-                  // Get.offAll(() => SiteLayout());
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: active,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  alignment: Alignment.center,
-                  width: double.maxFinite,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: const CustomText(
-                    text: "Login",
-                    color: Colors.white,
-                  ),
-                ),
+              // InkWell(
+              //   onTap: (){
+              //     Get.offAllNamed(rootRoute);
+              //     // Get.offAll(() => SiteLayout());
+              //   },
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       color: active,
+              //       borderRadius: BorderRadius.circular(20),
+              //     ),
+              //     alignment: Alignment.center,
+              //     width: double.maxFinite,
+              //     padding: const EdgeInsets.symmetric(vertical: 16),
+              //     child: const CustomText(
+              //       text: "LOGIN",
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              // ),
+              GFButton(
+                onPressed: () => login(),
+                text: "LOGIN",
+                shape: GFButtonShape.pills,
+                blockButton: true,
+                size: GFSize.LARGE,
               ),
               const SizedBox(
                 height: 15,
               ),
-              RichText(
-                text: const TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Don't have an account?",
-                    ),
-                    TextSpan(
-                      text: "Register here",
-                      style: TextStyle(
-                        color: active,
+              InkWell(
+                onTap: (){
+                  Get.offAll(() => RegistrationPage());
+                },
+                child: RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Don't have an account?",
                       ),
-                    ),
-                  ],
+                      TextSpan(
+                        text: "Register here",
+                        style: TextStyle(
+                          color: active,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
